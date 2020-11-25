@@ -1,8 +1,14 @@
 package com.example.demo;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
+
+import static java.lang.System.out;
 
 public class test{
     int i;
@@ -18,11 +24,16 @@ public class test{
         return this.content;
     }
 }
-@RestController
+@Controller
 class testforapi{
     @RequestMapping("/test")
-    public test api(@RequestParam(value = "id")int id,@RequestParam(value = "content")String content){
-        return new test(id, content);
+    public String api(@RequestParam(value = "id", defaultValue = "123")int id,@RequestParam(value = "content", defaultValue = "string")String content){
+        String safe = HtmlUtils.htmlEscape(content);
+
+        out.println("<html>");
+        String s = "<html>"+"<h>" + safe + "</h>"+"</html>";
+        out.println(safe);
+        return s;
 
 
     }
