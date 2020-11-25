@@ -22,24 +22,21 @@ class GetUser {
     @Autowired
     DataSource dataSource;
     @GetMapping("/AddUser")
-    public int GetData(@RequestParam("id") int id, @RequestParam("name")String name, @RequestParam("register") Boolean register) throws SQLException {
+    public boolean GetData(@RequestParam("id") int id, @RequestParam("name")String name, @RequestParam("register") Boolean register) throws SQLException {
         User user = new User();
         user.setName(name);
         user.setRegister(register);
         user.setUser_id(id);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        
+        //JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Connection connection = dataSource.getConnection();
         String sql = "insert into mybatistest(id,name,register)" +
-                " values ("+id+",'"+name+"',"+register+")";
-        PreparedStatement Pre
-        @Override
-        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-            return null;
-        }
-        int update = jdbcTemplate.execute(new PreparedStatementCreator() {
-
-        });
-        return update;
+                " values (?,?,?)";
+        PreparedStatement Pre = connection.prepareStatement(sql);
+        Pre.setInt(1,user.getUser_id());
+        Pre.setString(2,user.getName());
+        Pre.setBoolean(3,user.getRegister());
+        boolean execute = Pre.execute();
+        return execute;
 
 
     }
