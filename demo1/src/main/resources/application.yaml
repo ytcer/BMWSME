@@ -1,8 +1,9 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    #?serverTimezone=UTC解决时区的报错
+    password: Dwhu+niw2EsClQP/Q21RJxcMRZeKSJF7f100qlXHh+3oym5KuDp5w9RIgKmGFO9eibcXkcqq847pNHDqJAS+lQ==
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMQFIoeP2GZY1Orglg0L8kwKn6Y8AVLKkK2V0xyV8gxjQTiFmxRKtzeJamKeVptGNyIQEIE8EYsfUUqg8VkUxukCAwEAAQ==
+    #privateKey: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAxAUih4/YZljU6uCWDQvyTAqfpjwBUsqQrZXTHJXyDGNBOIWbFEq3N4lqYp5Wm0Y3IhAQgTwRix9RSqDxWRTG6QIDAQABAkBoGeYFopIlgKXK+20VDrQmSDoTOajmRCfj2D7e3o9Gnf1+HXuFjY4x/8SFrcfRzx/Z+Pr8K7Em2GymXYudcyABAiEA7EEN6VQprDHFWo+HZwX5rZmNgPNWzxTvjUle5SXWoukCIQDUZzlANP8OZP6oSd/5QiXq0DIWTTc5bOoqnqjDmo6EAQIhAKBvmRvfjKEj92qFV6UNuL08LozoMwZTqE3hCnFAXd6pAiEAkKdwJRsyrUH48PHG+IGlQyLhSbDysEhNvhLpyrVC5AECIGSSaFCnJS1g2lpub1cGjy/ldwx16XzlGXVBiXR9ycTT
     url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
@@ -26,12 +27,18 @@ spring:
       poolPreparedStatements: true
       # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，
       #'wall'用于防火墙，SpringBoot中没有log4j，我改成了log4j2
-      #filters: stat,wall,log4j2
+      filters: stat,wall,config
+
+
+
       #最大PSCache连接
       maxPoolPreparedStatementPerConnectionSize: 20
       useGlobalDataSourceStat: true
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500;config.decrypt=true;config.decrypt.key=${spring.datasource.publicKey}
+
+
+
       # 配置StatFilter
       web-stat-filter:
         #默认为false，设置为true启动
@@ -51,3 +58,4 @@ spring:
         reset-enable: true
         #启用
         enabled: true
+

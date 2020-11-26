@@ -40,7 +40,7 @@ class GetUser {
 
 
     }
-    @Autowired
+
 
     @GetMapping("/ConTest")
     public Connection GetConnection() throws SQLException {
@@ -55,7 +55,7 @@ class GetUser {
         List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
         return maps;
 
-        //查询
+
         }
 
     }
