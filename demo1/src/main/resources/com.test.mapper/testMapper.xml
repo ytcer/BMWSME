@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.UserMapper.UserMapper">
+    <select id="QueryForUser" resultType="com.example.demo.DAO.User">
+        SELECT *
+FROM `mybatistest`
+</select>
+
+
+    <update id="UpdateUser" parameterType="com.example.demo.DAO.User">
+        insert into mybatistest (id,name)
+        values (#{id},#{name});
+    </update>
+
+    <delete id="DeleteById" parameterType="java.lang.Integer">
+        delete from mybatistest where id = #{id}
+    </delete>
+
+</mapper>
+

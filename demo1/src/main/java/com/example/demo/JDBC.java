@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.DAO.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,16 +18,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/*
 @RestController
 class GetUser {
     @Autowired
     DataSource dataSource;
     @GetMapping("/AddUser")
     public boolean GetData(@RequestParam("id") int id, @RequestParam("name")String name, @RequestParam("register") Boolean register) throws SQLException {
-        User user = new User();
+        */
+/*User user = new User();
         user.setName(name);
         user.setRegister(register);
-        user.setUser_id(id);
+
         //JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         Connection connection = dataSource.getConnection();
         String sql = "insert into mybatistest(id,name,register)" +
@@ -36,10 +39,13 @@ class GetUser {
         Pre.setString(2,user.getName());
         Pre.setBoolean(3,user.getRegister());
         boolean execute = Pre.execute();
-        return execute;
+        return execute;*//*
+
 
 
     }
+*/
+/*
 
 
     @GetMapping("/ConTest")
@@ -49,7 +55,9 @@ class GetUser {
     }
     @GetMapping("/ShowInfo")
     public  List<Map<String, Object>> ShowInfo() throws SQLException{
-       /* Connection connection = dataSource.getConnection();*/
+       */
+/* Connection connection = dataSource.getConnection();*//*
+
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String sql = "select * from mybatisTest";
         List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
@@ -62,41 +70,4 @@ class GetUser {
 
 
 
-        class User{
-        String name;
-        int user_id;
-        int user_type;
-        Boolean register;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getUser_type() {
-        return user_type;
-    }
-
-    public void setUser_type(int user_type) {
-        this.user_type = user_type;
-    }
-
-    public Boolean getRegister() {
-        return register;
-    }
-
-    public void setRegister(Boolean register) {
-        this.register = register;
-    }
-}
+*/
